@@ -4,14 +4,52 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  run_with_maxHttpRequestsPerSource-1024-with-rm-nuget-config:
     runs-on: ubuntu-latest
+    if: always()
 
     steps:
       - uses: actions/checkout@v4
         with:
           repository: 'jellyfin/jellyfin'
       - run: rm nuget.config
+      - run: nuget config -Set maxHttpRequestsPerSource=1024
+
+      - run: nuget restore Jellyfin.sln
+
+  run_with_maxHttpRequestsPerSource-1-with-rm-nuget-config:
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: 'jellyfin/jellyfin'
+      - run: rm nuget.config
+      - run: nuget config -Set maxHttpRequestsPerSource=1024
+
+      - run: nuget restore Jellyfin.sln
+
+  run_with_maxHttpRequestsPerSource-1024:
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: 'jellyfin/jellyfin'
+      - run: nuget config -Set maxHttpRequestsPerSource=1024
+
+      - run: nuget restore Jellyfin.sln
+
+  run_with_maxHttpRequestsPerSource-1:
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: 'jellyfin/jellyfin'
       - run: nuget config -Set maxHttpRequestsPerSource=1024
 
       - run: nuget restore Jellyfin.sln
