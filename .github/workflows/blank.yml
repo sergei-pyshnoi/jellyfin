@@ -12,6 +12,6 @@ jobs:
         with:
           repository: 'jellyfin/jellyfin'
       
-      - run: nuget config -Set maxHttpRequestsPerSource=1
+      - run: nuget config -Set maxHttpRequestsPerSource=1024
 
       - run: nuget restore Jellyfin.sln
