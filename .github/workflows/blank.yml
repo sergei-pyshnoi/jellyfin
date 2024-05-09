@@ -12,10 +12,6 @@ jobs:
         with:
           repository: 'jellyfin/jellyfin'
       
-      - run: dotnet restore Jellyfin.sln --verbosity detailed > nugetoutput.txt
-      - run: grep "GET " < nugetoutput.txt
-
-      - run: dotnet nuget locals all --clear
       - run: nuget config -Set maxHttpRequestsPerSource=1
 
       - run: dotnet restore Jellyfin.sln --verbosity detailed --force > nugetoutput2.txt
