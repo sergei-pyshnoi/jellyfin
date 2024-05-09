@@ -1,0 +1,22 @@
+name: Nuget Test
+
+on:  
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: 'jellyfin/jellyfin'
+      
+      - run: dotnet restore Jellyfin.sln --verbosity detailed > nugetoutput.txt
+      - run: grep "GET " < nugetoutput.txt
+
+      - run: dotnet nuget locals all --clear
+      - run: nuget config -Set maxHttpRequestsPerSource=16
+
+      - run: dotnet restore Jellyfin.sln --verbosity detailed --force > nugetoutput2.txt
+      - run: grep "GET " < nugetoutput2.txt
