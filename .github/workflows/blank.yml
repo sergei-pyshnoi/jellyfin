@@ -14,4 +14,4 @@ jobs:
       
       - run: nuget config -Set maxHttpRequestsPerSource=1
 
-      - run: dotnet restore Jellyfin.sln --verbosity detailed --force
+      - run: dotnet restore Jellyfin.sln
