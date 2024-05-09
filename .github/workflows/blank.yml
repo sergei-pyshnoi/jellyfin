@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: 'jellyfin/jellyfin'
-      
+      - run: rm nuget.config
       - run: nuget config -Set maxHttpRequestsPerSource=1024
 
       - run: nuget restore Jellyfin.sln
