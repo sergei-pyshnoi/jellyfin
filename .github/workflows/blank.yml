@@ -16,7 +16,7 @@ jobs:
       - run: grep "GET " < nugetoutput.txt
 
       - run: dotnet nuget locals all --clear
-      - run: nuget config -Set maxHttpRequestsPerSource=16
+      - run: nuget config -Set maxHttpRequestsPerSource=1
 
       - run: dotnet restore Jellyfin.sln --verbosity detailed --force > nugetoutput2.txt
       - run: grep "GET " < nugetoutput2.txt
